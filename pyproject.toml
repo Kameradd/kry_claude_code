@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "free-claude-code"
-version = "2.4.1"
+version = "2.4.2"
 description = "Middleware between Claude Code CLI (Anthropic API) and NVIDIA NIM"
 readme = "README.md"
 requires-python = ">=3.14.0"
@@ -75,6 +75,7 @@ dev = [
 [tool.ruff]
 target-version = "py314"
 line-length = 88
+exclude = [".venv", ".git", ".agents"]
 
 [tool.ruff.lint]
 select = [
@@ -120,7 +121,6 @@ markers = [
     "smoke_target(name): route a smoke test behind FCC_SMOKE_TARGETS",
     "xdist_group(name): group smoke provider items under pytest-xdist --dist=loadgroup",
 ]
-
 [tool.ty.environment]
 python-version = "3.14"
 

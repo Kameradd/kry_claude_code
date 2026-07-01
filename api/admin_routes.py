@@ -116,6 +116,12 @@ async def apply_admin_config(
         return result
 
     get_cached_settings.cache_clear()
+    try:
+        from cli.launchers.settings_sync import sync_claude_settings
+
+        sync_claude_settings(get_cached_settings())
+    except Exception:
+        pass
     restart = _restart_metadata(result["pending_fields"], request)
     result["restart"] = restart
     if restart["required"] and restart["automatic"]:

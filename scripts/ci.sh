@@ -126,10 +126,10 @@ selected_checks_need_uv() {
 run_suppressions() {
     step "Ban type ignore suppressions"
     print_command grep -rE '# type: ignore|# ty: ignore' --include='*.py' . \
-        --exclude-dir=.venv --exclude-dir=.git
+        --exclude-dir=.venv --exclude-dir=.git --exclude-dir=.agents
     if [ "$dry_run" -eq 0 ]; then
         if grep -rE '# type: ignore|# ty: ignore' --include='*.py' . \
-            --exclude-dir=.venv --exclude-dir=.git; then
+            --exclude-dir=.venv --exclude-dir=.git --exclude-dir=.agents; then
             fail "type: ignore / ty: ignore comments are not allowed. Fix the underlying type errors instead."
         fi
     fi

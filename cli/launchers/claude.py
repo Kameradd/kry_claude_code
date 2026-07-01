@@ -15,6 +15,7 @@ from cli.claude_env import (
 from config.settings import get_settings
 
 from .common import preflight_proxy, resolve_client_binary, run_client_process
+from .settings_sync import sync_claude_settings
 
 _DISPLAY_NAME = "Claude Code"
 _INSTALL_HINT = "Install Claude Code with: npm install -g @anthropic-ai/claude-code"
@@ -32,6 +33,8 @@ def launch(argv: Sequence[str] | None = None) -> None:
         )
         print("Start it in another terminal with: fcc-server", file=sys.stderr)
         raise SystemExit(1)
+
+    sync_claude_settings(settings)
 
     binary_name = claude_binary_name()
     binary_path = resolve_client_binary(
